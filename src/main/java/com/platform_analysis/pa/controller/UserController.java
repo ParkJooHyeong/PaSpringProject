@@ -22,16 +22,12 @@ public class UserController {
     }
 
     @GetMapping("/allUser")
-    public String getAllUserData(Model model){
-        List<UserDataEntity> allUserData = userService.getAllUserData();
-        model.addAttribute("allUserData", allUserData);
-        return "allUser/list";
+    public List<UserDataEntity> getAllUserData(){
+        return userService.getAllUserData();
     }
 
     @GetMapping("/User/{id}")
-    public String getUserDataById(@PathVariable Long id, Model model){
-        UserDataEntity userData = userService.getUserMapper(id);
-        model.addAttribute("userData", userData);
-        return "User/detail";
+    public UserDataEntity getUserDataById(@PathVariable Long id){
+        return userService.getUserMapper(id);
     }
 }
