@@ -10,4 +10,8 @@
         SELECT * FROM PA_TEST_USER WHERE id = #{id}
     </select>
 
+    <insert id="setUserData" parameterType="com.platform_analysis.pa.model.UserDataEntity">
+        INSERT INTO PA_TEST_USER (username, email) VALUES(#{username}, #{email})
+    </insert>
+
 </mapper>

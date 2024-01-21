@@ -30,4 +30,9 @@ public class UserController {
     public UserDataEntity getUserDataById(@PathVariable Long id){
         return userService.getUserMapper(id);
     }
+
+    @PostMapping("/CreateUser/{username}/{email}")
+    public int createUser(@PathVariable String username, @PathVariable String email){
+        return userService.setUserData(username, email);
+    }
 }

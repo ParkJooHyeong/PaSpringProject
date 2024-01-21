@@ -11,4 +11,6 @@ public interface UserMapper {
     List<UserDataEntity> getAllUserData();
 
     UserDataEntity getUserDataById(@Param("id") Long id);
+
+    int setUserData(@Param("username") String username, @Param("email") String email);
 }
