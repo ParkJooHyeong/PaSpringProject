@@ -1,7 +1,6 @@
 package com.platform_analysis.pa.service;
-import com.platform_analysis.pa.model.UserDataEntity;
+import com.platform_analysis.pa.model.Entitiy.UserDataEntity;
 import com.platform_analysis.pa.repository.UserMapper;
-import org.aspectj.apache.bcel.generic.InstructionList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;

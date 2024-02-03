@@ -4,13 +4,15 @@ import com.platform_analysis.pa.model.Entitiy.UserDataEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Mapper
-public interface UserMapper {
-    List<UserDataEntity> getAllUserData();
+public interface UserInfoMapper {
+    // 로그인 유저 정보
+    List<UserDataEntity> getAllUserList();
 
     UserDataEntity getUserDataById(@Param("id") Long id);
 
-    int setUserData(@Param("username") String username, @Param("email") String email);
+    int setUserData(HashMap<String, Object> hmUsersData);
 }

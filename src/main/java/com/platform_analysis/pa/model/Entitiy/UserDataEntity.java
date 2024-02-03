@@ -1,4 +1,4 @@
-package com.platform_analysis.pa.model;
+package com.platform_analysis.pa.model.Entitiy;
 import lombok.Getter;
 import lombok.Setter;
 
