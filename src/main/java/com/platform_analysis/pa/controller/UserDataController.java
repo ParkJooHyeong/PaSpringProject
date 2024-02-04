@@ -21,12 +21,12 @@ public class UserDataController {
     }
 
     @PostMapping("/getUserData")
-    public List<UserDataEntity> getAllUserData(){
+    public List<UserDTO> getAllUserData(){
         return userDataService.getAllUserData();
     }
 
     @PostMapping("/getUserData/{id}")
-    public UserDataEntity getUserDataById(@PathVariable Long id){
+    public UserDTO getUserDataById(@PathVariable Long id){
         return userDataService.getUserDataById(id);
     }
 

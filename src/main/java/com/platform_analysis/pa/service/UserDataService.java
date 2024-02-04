@@ -21,11 +21,11 @@ public class UserDataService {
         this.userInfoMapper = userInfoMapper;
     }
 
-    public List<UserDataEntity> getAllUserData(){
+    public List<UserDTO> getAllUserData(){
         return userInfoMapper.getAllUserList();
     }
 
-    public UserDataEntity getUserDataById(Long id){
+    public UserDTO getUserDataById(Long id){
         return userInfoMapper.getUserDataById(id);
     }
 
