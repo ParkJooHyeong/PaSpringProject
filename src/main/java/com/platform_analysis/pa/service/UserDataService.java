@@ -1,18 +1,21 @@
 package com.platform_analysis.pa.service;
 
+import com.platform_analysis.pa.model.Entitiy.UserDataEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.platform_analysis.pa.model.DTO.UserDTO;
-import com.platform_analysis.pa.model.Entitiy.UserDataEntity;
 import com.platform_analysis.pa.repository.UserInfoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.List;
 
 @Service
 public class UserDataService {
+    private static final Logger logger = LoggerFactory.getLogger(UserDataService.class);
     private final BCryptPasswordEncoder pwEncoder = new BCryptPasswordEncoder();
     private final UserInfoMapper userInfoMapper;
 
@@ -22,7 +25,8 @@ public class UserDataService {
     }
 
     public List<UserDTO> getAllUserData(){
-        return userInfoMapper.getAllUserList();
+        logger.info("ALL USER를 조회합니다.");
+        return userInfoMapper.getAllUserData();
     }
 
     public UserDTO getUserDataById(Long id){
@@ -34,19 +38,30 @@ public class UserDataService {
     }
 
     public boolean checkLoginInfo(UserDTO userDTO){
-//        UserInfoMapper userinfo = userInfoMapper.getUserDataById();
-        return true;
+        List<UserDTO> liUserDTO = userInfoMapper.checkLoginInfo(userDTO.getUSER_EMAIL(), userDTO.getUSER_PW());
+        if (liUserDTO.size() == 0){
+            logger.info(">>>>> 로그인 실패 : User 정보를 확인할 수 없음.");
+            return false;
+        }
+        else if(liUserDTO.size() == 1){
+            logger.info(">>>>> 로그인 성공");
+            return true;
+        }
+        else{
+            logger.info(String.format(">>>>> 로그인 정보가 이상합니다. 데이터를 확인하세요. NAME: %s, EMAIL: %s",liUserDTO.get(0).getUSER_NAME(), liUserDTO.get(0).getUSER_EMAIL()));
+            return false;
+        }
     }
 
 
     private HashMap<String, Object> setParameter(UserDTO userDTO){
         HashMap<String, Object> hmUserData = new HashMap<>();
 
-        hmUserData.put("username", userDTO.getName());
-        hmUserData.put("email", userDTO.getEmail());
-        hmUserData.put("password", pwEncoder.encode(userDTO.getPassword()));
-        hmUserData.put("birthday", userDTO.getBirthday());
-        hmUserData.put("address", userDTO.getAddress());
+        hmUserData.put("username", userDTO.getUSER_NAME());
+        hmUserData.put("email", userDTO.getUSER_EMAIL());
+        hmUserData.put("password", pwEncoder.encode(userDTO.getUSER_PW()));
+        hmUserData.put("birthday", userDTO.getUSER_BIRTHDAY());
+        hmUserData.put("address", userDTO.getUSER_ADDRESS());
 
         return hmUserData;
     }

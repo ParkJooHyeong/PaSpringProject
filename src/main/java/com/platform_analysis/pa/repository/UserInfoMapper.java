@@ -10,10 +10,12 @@ import java.util.List;
 
 @Mapper
 public interface UserInfoMapper {
-    // 로그인 유저 정보
-    List<UserDTO> getAllUserList();
+
+    List<UserDTO> getAllUserData();
 
     UserDTO getUserDataById(@Param("id") Long id);
 
     int setUserData(HashMap<String, Object> hmUsersData);
+
+    List<UserDTO> checkLoginInfo(@Param("username") String username, @Param("password") String password);
 }
