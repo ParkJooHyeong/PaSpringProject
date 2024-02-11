@@ -38,7 +38,7 @@ public class UserDataService {
     }
 
     public boolean checkLoginInfo(UserDTO userDTO){
-        List<UserDTO> liUserDTO = userInfoMapper.checkLoginInfo(userDTO.getUSER_EMAIL(), userDTO.getUSER_PW());
+        List<UserDTO> liUserDTO = userInfoMapper.checkLoginInfo(userDTO.getUserEmail(), userDTO.getUserPW());
         if (liUserDTO.size() == 0){
             logger.info(">>>>> 로그인 실패 : User 정보를 확인할 수 없음.");
             return false;
@@ -48,7 +48,8 @@ public class UserDataService {
             return true;
         }
         else{
-            logger.info(String.format(">>>>> 로그인 정보가 이상합니다. 데이터를 확인하세요. NAME: %s, EMAIL: %s",liUserDTO.get(0).getUSER_NAME(), liUserDTO.get(0).getUSER_EMAIL()));
+            logger.info(String.format(">>>>> 로그인 정보가 이상합니다. 데이터를 확인하세요. NAME: %s, EMAIL: %s"
+                    ,liUserDTO.get(0).getUserName(), liUserDTO.get(0).getUserEmail()));
             return false;
         }
     }
@@ -57,11 +58,11 @@ public class UserDataService {
     private HashMap<String, Object> setParameter(UserDTO userDTO){
         HashMap<String, Object> hmUserData = new HashMap<>();
 
-        hmUserData.put("username", userDTO.getUSER_NAME());
-        hmUserData.put("email", userDTO.getUSER_EMAIL());
-        hmUserData.put("password", pwEncoder.encode(userDTO.getUSER_PW()));
-        hmUserData.put("birthday", userDTO.getUSER_BIRTHDAY());
-        hmUserData.put("address", userDTO.getUSER_ADDRESS());
+        hmUserData.put("username", userDTO.getUserName());
+        hmUserData.put("email", userDTO.getUserEmail());
+        hmUserData.put("password", pwEncoder.encode(userDTO.getUserPW()));
+        hmUserData.put("birthday", userDTO.getUserBirthday());
+        hmUserData.put("address", userDTO.getUserAddress());
 
         return hmUserData;
     }

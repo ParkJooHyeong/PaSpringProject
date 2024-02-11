@@ -17,12 +17,12 @@ import java.time.LocalDate;
 public class UserDTO {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long USER_ID; // USER_ID
+    private Long userId; // USER_ID
 
-    private String USER_NAME; // USER_NAME
-    private String USER_EMAIL; // USER_EMAIL
-    private String USER_PW; // USER_PW
-    private Timestamp CREATE_TM; // CREATE_TM
-    private LocalDate USER_BIRTHDAY; // USER_BIRTHDAY
-    private String USER_ADDRESS; // USER_ADDRESS
+    private String userName; // USER_NAME
+    private String userEmail; // USER_EMAIL
+    private String userPW; // USER_PW
+    private Timestamp createTM; // CREATE_TM
+    private LocalDate userBirthday; // USER_BIRTHDAY
+    private String userAddress; // USER_ADDRESS
 }
