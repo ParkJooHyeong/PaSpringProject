@@ -29,9 +29,7 @@ public class UserDataService {
         return userInfoMapper.getAllUserData();
     }
 
-    public UserDTO getUserDataById(Long id){
-        return userInfoMapper.getUserDataById(id);
-    }
+    public UserDTO getUserDataById(Long id) { return userInfoMapper.getUserDataById(id); }
 
     public int setUserData(UserDTO userDTO){
         return userInfoMapper.setUserData(setParameter(userDTO));
@@ -52,6 +50,11 @@ public class UserDataService {
                     ,liUserDTO.get(0).getUserName(), liUserDTO.get(0).getUserEmail()));
             return false;
         }
+    }
+
+    public boolean checkUserDuplicate(UserDTO userDTO){
+        List<UserDTO> liUserDTO = userInfoMapper.checkUserDuplicate(userDTO.getUserEmail());
+        return liUserDTO.size() != 0;
     }
 
 

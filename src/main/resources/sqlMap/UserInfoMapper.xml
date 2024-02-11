@@ -23,4 +23,10 @@
         WHERE U.USER_EMAIL = #{username} AND U.USER_PW = #{password}
     </select>
 
+    <select id="checkUserDuplicate" resultType="com.platform_analysis.pa.model.DTO.UserDTO">
+        SELECT U.USER_EMAIL
+        FROM PA_USER_MAS U
+        WHERE U.USER_EMAIL = #{email}
+    </select>
+
 </mapper>

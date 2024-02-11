@@ -22,7 +22,10 @@ public class UserDTO {
     private String userName; // USER_NAME
     private String userEmail; // USER_EMAIL
     private String userPW; // USER_PW
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Timestamp createTM; // CREATE_TM
+
     private LocalDate userBirthday; // USER_BIRTHDAY
     private String userAddress; // USER_ADDRESS
 }

@@ -18,4 +18,6 @@ public interface UserInfoMapper {
     int setUserData(HashMap<String, Object> hmUsersData);
 
     List<UserDTO> checkLoginInfo(@Param("username") String username, @Param("password") String password);
+
+    List<UserDTO> checkUserDuplicate(@Param("email") String email);
 }

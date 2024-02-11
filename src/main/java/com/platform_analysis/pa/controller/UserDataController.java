@@ -41,4 +41,7 @@ public class UserDataController {
     public boolean checkLoginInfo(@RequestBody UserDTO userDTO){
         return userDataService.checkLoginInfo(userDTO);
     }
+
+    @PostMapping("/checkUserDuplicate")
+    public boolean checkUserDuplicate(@RequestBody UserDTO userDTO) { return userDataService.checkUserDuplicate(userDTO); }
 }
