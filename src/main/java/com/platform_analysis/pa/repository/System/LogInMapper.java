@@ -10,4 +10,6 @@ import java.util.HashMap;
 @Mapper
 public interface LogInMapper {
     UserDTO checkLogIn(HashMap<String, Object> params);
+
+    int checkDuplicateUserInfo(HashMap<String, Object> params);
 }

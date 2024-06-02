@@ -13,15 +13,27 @@ public class LogInService {
     @Autowired
     private LogInMapper logInMapper;
 
-    public boolean checkUserInfo(UserDTO userDTO){
+    public boolean checkUserInfo(UserDTO userDTO) {
+        HashMap<String, Object> mapPara = new HashMap<>();
+        mapPara.put("EMAIL", userDTO.getEmail());
+        mapPara.put("PASSWORD_HASH", userDTO.getPasswordHash());
+
         try {
-            HashMap<String, Object> mapPara = new HashMap<>();
-            mapPara.put("EMAIL", userDTO.getEmail());
-            mapPara.put("PASSWORD_HASH", userDTO.getPasswordHash());
-
             UserDTO result = logInMapper.checkLogIn(mapPara);
-
             return result != null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean checkDuplicateUserInfo(UserDTO userDTO) {
+        HashMap<String, Object> mapPara = new HashMap<>();
+        mapPara.put("EMAIL", userDTO.getEmail());
+
+        try {
+            int  result = logInMapper.checkDuplicateUserInfo(mapPara);
+            return result == 0;
         } catch (Exception e) {
             e.printStackTrace();
             return false;

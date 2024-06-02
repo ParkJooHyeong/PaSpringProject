@@ -20,4 +20,9 @@ public class LogInController {
         return logInService.checkUserInfo(userDTO);
     }
 
+    @PostMapping("checkDuplicateUserInfo")
+    public boolean checkDuplicateUserInfo(@RequestBody UserDTO userDTO) {
+        return logInService.checkDuplicateUserInfo(userDTO);
+    }
+
 }

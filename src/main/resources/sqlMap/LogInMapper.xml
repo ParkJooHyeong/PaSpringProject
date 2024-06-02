@@ -7,4 +7,10 @@
                 AND U.EMAIL = #{EMAIL}
                 AND U.PASSWORD_HASH = #{PASSWORD_HASH}
     </select>
+
+    <select id="checkDuplicateUserInfo" resultType="int">
+        SELECT COUNT(EMAIL) FROM PA_USER_MAS U
+            WHERE 1 = 1
+                AND U.EMAIL = #{EMAIL}
+    </select>
 </mapper>
